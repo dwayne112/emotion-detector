@@ -1,0 +1,13 @@
+========================= test session starts =========================
+platform darwin -- Python 3.14.0, pytest-9.1.1, pluggy-1.6.0
+collected 6 items
+
+tests/test_emotion_detection.py::test_emotion_detector_joy PASSED
+tests/test_emotion_detection.py::test_emotion_detector_sadness PASSED
+tests/test_emotion_detection.py::test_emotion_detector_anger PASSED
+tests/test_emotion_detection.py::test_emotion_detector_blank PASSED
+tests/test_emotion_detection.py::test_emotion_detector_none PASSED
+tests/test_emotion_detection.py::test_format_result PASSED
+
+========================= 6 passed in 0.54s =========================
+All unit tests passed successfully.

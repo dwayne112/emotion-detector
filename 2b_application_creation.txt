@@ -1,0 +1,4 @@
+Emotion Detection Result:
+Input: I am so happy today!
+Result: {'joy': 0.854, 'sadness': 0.036, 'anger': 0.015, 'fear': 0.012, 'disgust': 0.008, 'surprise': 0.075}
+Application imported and tested successfully.

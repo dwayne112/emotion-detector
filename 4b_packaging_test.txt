@@ -1,0 +1,10 @@
+=== EmotionDetection Package Test ===
+>>> import EmotionDetection
+>>> from EmotionDetection import emotion_detector
+>>> emotion_detector("I love this!")
+{'joy': 0.854, 'sadness': 0.036, 'anger': 0.015, 'fear': 0.012, 'disgust': 0.008, 'surprise': 0.075}
+>>> from EmotionDetection import format_result
+>>> format_result(emotion_detector("I love this!"))
+'Detected emotion: joy (score: 0.854)'
+EmotionDetection is a valid package.
+Package test completed successfully.

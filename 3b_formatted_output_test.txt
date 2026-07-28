@@ -1,0 +1,4 @@
+Emotion Detection Result:
+Input: I am so happy today!
+Detected emotion: joy (score: 0.854)
+Output format is accurate.
