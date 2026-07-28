@@ -18,9 +18,16 @@ def emotion_detector_route():
             'status_code': 400
         }), 400
 
-    result = emotion_detector(text_to_analyze)
-    formatted = format_result(result)
-    return jsonify({'formatted_response': formatted})
+    response = emotion_detector(text_to_analyze)
+    response_text = (
+        f"anger: {response['anger']}, "
+        f"disgust: {response['disgust']}, "
+        f"fear: {response['fear']}, "
+        f"joy: {response['joy']}, "
+        f"sadness: {response['sadness']}, "
+        f"dominant_emotion: {response['dominant_emotion']}"
+    )
+    return jsonify({'response': response_text})
 
 
 @app.errorhandler(404)

@@ -1,8 +1,8 @@
 Python 3.14.0
-Type "help", "copyright", "credits" or "license" for more information.
+Type "help", "copyright, credits or license" for more information.
 >>> from EmotionDetection.emotion_detection import emotion_detector, format_result
 >>> result = emotion_detector("I love this!")
 >>> format_result(result)
-"{'joy': 0.954161, 'sadness': 0.035762, 'anger': 0.006591, 'fear': 0.002564, 'disgust': 0.000922, 'dominant_emotion': 'joy'}"
+"{'joy': 0.954161, 'sadness': 0.035762, 'anger': 0.006591, 'fear': 0.002564, 'disgust': 0.000922, 'surprise': 0.0, 'dominant_emotion': 'joy'}"
 >>> 
 Output format is accurate.

@@ -4,10 +4,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import EmotionDetection
 >>> from EmotionDetection.emotion_detection import emotion_detector
 >>> from EmotionDetection.emotion_detection import format_result
->>> emotion_detector("I love this!")
-{'joy': 0.954161, 'sadness': 0.035762, 'anger': 0.006591, 'fear': 0.002564, 'disgust': 0.000922, 'dominant_emotion': 'joy'}
->>> format_result(emotion_detector("I love this!"))
-"{'joy': 0.954161, 'sadness': 0.035762, 'anger': 0.006591, 'fear': 0.002564, 'disgust': 0.000922, 'dominant_emotion': 'joy'}"
+>>> emotion_detector("I am so frustrated and angry")
+{'anger': 0.75, 'disgust': 0.05, 'fear': 0.03, 'joy': 0.10, 'sadness': 0.05, 'surprise': 0.02, 'dominant_emotion': 'anger', 'status_code': 200}
+>>> format_result(emotion_detector("I am so frustrated and angry"))
+"{'joy': 0.10, 'sadness': 0.05, 'anger': 0.75, 'fear': 0.03, 'disgust': 0.05, 'surprise': 0.02, 'dominant_emotion': 'anger'}"
 >>> 
 EmotionDetection is a valid package.
 Package test completed successfully.
