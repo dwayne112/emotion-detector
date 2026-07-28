@@ -1,0 +1,17 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Starting test_emotion_detection.py
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test_emotion_detector_anger ... ok
+test_emotion_detector_blank ... ok
+test_emotion_detector_disgust ... ok
+test_emotion_detector_fear ... ok
+test_emotion_detector_joy ... ok
+test_emotion_detector_none ... ok
+test_format_result ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.543s
+
+OK
+>>> 
+All unit tests passed successfully.

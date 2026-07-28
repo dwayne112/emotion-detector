@@ -1,3 +1,6 @@
+import requests
+import json
+
 def emotion_detector(text):
     if text is None or text.strip() == "":
         return {
@@ -30,3 +33,10 @@ def emotion_detector(text):
         'joy': joy, 'sadness': sadness, 'surprise': surprise,
         'dominant_emotion': dominant_emotion, 'status_code': 200
     }
+
+if __name__ == "__main__":
+    test_text = "I am so happy today!"
+    result = emotion_detector(test_text)
+    print("Emotion Detection Result:")
+    print(f"Input: {test_text}")
+    print(f"Result: {result}")

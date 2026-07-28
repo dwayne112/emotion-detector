@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 def emotion_detector(text):
     if text is None or text.strip() == "":
         return {
@@ -23,13 +22,7 @@ def emotion_detector(text):
     surprise = emotions.get('surprise', 0.0)
     emotion_scores = {'anger': anger, 'disgust': disgust, 'fear': fear, 'joy': joy, 'sadness': sadness, 'surprise': surprise}
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
-    return {
-        'anger': anger, 'disgust': disgust, 'fear': fear,
-        'joy': joy, 'sadness': sadness, 'surprise': surprise,
-        'dominant_emotion': dominant_emotion,
-        'status_code': 200
-    }
-
+    return response.text
 
 if __name__ == "__main__":
     test_text = "I am so happy today!"

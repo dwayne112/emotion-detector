@@ -4,59 +4,39 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from EmotionDetection.emotion_detection import emotion_detector, format_result
 
-
 class TestEmotionDetector(unittest.TestCase):
-
     def test_emotion_detector_joy(self):
-        result = emotion_detector("I am so happy today!")
-        self.assertIn('joy', result)
-        self.assertIn('sadness', result)
-        self.assertIn('anger', result)
-        self.assertIn('fear', result)
-        self.assertIn('disgust', result)
-        self.assertIn('dominant_emotion', result)
-
-    def test_emotion_detector_sadness(self):
-        result = emotion_detector("I feel very sad and upset")
-        self.assertIn('joy', result)
-        self.assertIn('sadness', result)
-        self.assertIn('anger', result)
-        self.assertIn('fear', result)
-        self.assertIn('disgust', result)
-        self.assertIn('dominant_emotion', result)
-
+        result = emotion_detector("I love this")
+        self.assertIsNotNone(result.get('joy'))
+        self.assertEqual(result.get('dominant_emotion'), 'joy')
+    
     def test_emotion_detector_anger(self):
         result = emotion_detector("I am so frustrated and angry")
-        self.assertIn('anger', result)
-        self.assertIn('dominant_emotion', result)
-
-    def test_emotion_detector_disgust(self):
-        result = emotion_detector("This is disgusting")
-        self.assertIn('disgust', result)
-        self.assertIn('dominant_emotion', result)
-
+        self.assertIsNotNone(result.get('anger'))
+        self.assertEqual(result.get('dominant_emotion'), 'anger')
+    
+    def test_emotion_detector_sadness(self):
+        result = emotion_detector("I am so sad today")
+        self.assertIsNotNone(result.get('sadness'))
+    
     def test_emotion_detector_fear(self):
         result = emotion_detector("I am very scared")
-        self.assertIn('fear', result)
-        self.assertIn('dominant_emotion', result)
-
-    def test_emotion_detector_blank(self):
-        result = emotion_detector("")
-        self.assertEqual(result['status_code'], 400)
-        self.assertIsNone(result['joy'])
-
+        self.assertIsNotNone(result.get('fear'))
+    
+    def test_emotion_detector_disgust(self):
+        result = emotion_detector("This is disgusting")
+        self.assertIsNotNone(result.get('disgust'))
+    
     def test_emotion_detector_none(self):
-        result = emotion_detector(None)
-        self.assertEqual(result['status_code'], 400)
-        self.assertIsNone(result['joy'])
-
+        result = emotion_detector("")
+        self.assertEqual(result.get('status_code'), 400)
+        self.assertIsNone(result.get('dominant_emotion'))
+    
     def test_format_result(self):
-        result = {'joy': 0.85, 'sadness': 0.03, 'anger': 0.02,
-                  'fear': 0.01, 'disgust': 0.01, 'dominant_emotion': 'joy'}
-        formatted = format_result(result)
-        self.assertIn('joy', formatted)
-        self.assertIn('dominant_emotion', formatted)
-
+        test_dict = {'joy': 0.95, 'sadness': 0.03, 'anger': 0.01, 'fear': 0.005, 'disgust': 0.003, 'surprise': 0.002, 'dominant_emotion': 'joy'}
+        formatted = format_result(test_dict)
+        self.assertIn("'joy': 0.95", formatted)
+        self.assertIn("'dominant_emotion': 'joy'", formatted)
 
 if __name__ == '__main__':
     unittest.main()

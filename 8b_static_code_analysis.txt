@@ -1,17 +1,8 @@
-python3 -m pylint EmotionDetection/emotion_detection.py server.py --disable=all --enable=error,warning,convention,refactor,line-length
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Starting Pylint analysis of EmotionDetection package
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 --------------------------------------------------------------------
-Your code has been rated at 10.00/10 (previous run: 10.00/10)
+Your code has been rated at 8.03/10 (previous run: 8.03/10)
+
 --------------------------------------------------------------------
-Static Code Analysis Result:
-====================================
-Global Score: 10.00/10
-
-All checks passed:
-✓ Code quality passed
-✓ No refactoring issues
-✓ No convention violations
-✓ All imports are valid
-✓ No line length violations
-
-Static code analysis completed with a perfect score!

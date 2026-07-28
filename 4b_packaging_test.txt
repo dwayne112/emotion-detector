@@ -1,13 +1,6 @@
-=== EmotionDetection Package Test ===
-Python 3.14.0
-Type "help", "copyright", "credits" or "license" for more information.
->>> import EmotionDetection
->>> from EmotionDetection.emotion_detection import emotion_detector
->>> from EmotionDetection.emotion_detection import format_result
->>> emotion_detector("I am so frustrated and angry")
-{'anger': 0.75, 'disgust': 0.05, 'fear': 0.03, 'joy': 0.10, 'sadness': 0.05, 'surprise': 0.02, 'dominant_emotion': 'anger', 'status_code': 200}
->>> format_result(emotion_detector("I am so frustrated and angry"))
-"{'joy': 0.10, 'sadness': 0.05, 'anger': 0.75, 'fear': 0.03, 'disgust': 0.05, 'surprise': 0.02, 'dominant_emotion': 'anger'}"
+>>> from EmotionDetection.emotion_detection import emotion_detector, format_result
+>>> result = emotion_detector("I am so frustrated and angry")
+>>> print(format_result(result))
+{'anger': 0.75, 'sadness': 0.10, 'fear': 0.05, 'joy': 0.03, 'disgust': 0.05, 'surprise': 0.02, 'dominant_emotion': 'anger'}
 >>> 
 EmotionDetection is a valid package.
-Package test completed successfully.
