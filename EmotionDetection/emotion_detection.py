@@ -28,36 +28,34 @@ def emotion_detector(text):
 
     response = requests.post(url, headers=header, json=payload, timeout=30)
 
-    # Extract emotion scores from response
     response_json = json.loads(response.text)
-    emotions = response_json['emotion_pred']
-    anger = emotions['anger']
-    disgust = emotions['disgust']
-    fear = emotions['fear']
-    joy = emotions['joy']
-    sadness = emotions['sadness']
-    surprise = emotions.get('surprise', 0.0)
+    emotions = response_json["emotion_pred"]
+    anger = emotions["anger"]
+    disgust = emotions["disgust"]
+    fear = emotions["fear"]
+    joy = emotions["joy"]
+    sadness = emotions["sadness"]
+    surprise = emotions.get("surprise", 0.0)
 
-    # Find dominant emotion
     emotion_scores = {
-        'anger': anger,
-        'disgust': disgust,
-        'fear': fear,
-        'joy': joy,
-        'sadness': sadness,
-        'surprise': surprise
+        "anger": anger,
+        "disgust": disgust,
+        "fear": fear,
+        "joy": joy,
+        "sadness": sadness,
+        "surprise": surprise
     }
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
 
     return {
-        'anger': anger,
-        'disgust': disgust,
-        'fear': fear,
-        'joy': joy,
-        'sadness': sadness,
-        'surprise': surprise,
-        'dominant_emotion': dominant_emotion,
-        'status_code': 200
+        "anger": anger,
+        "disgust": disgust,
+        "fear": fear,
+        "joy": joy,
+        "sadness": sadness,
+        "surprise": surprise,
+        "dominant_emotion": dominant_emotion,
+        "status_code": 200
     }
 
 
@@ -70,11 +68,11 @@ def format_result(emotion_dict):
         return "Invalid input!"
 
     lines = []
-    for emotion in ['joy', 'sadness', 'anger', 'fear', 'disgust', 'surprise']:
+    for emotion in ["joy", "sadness", "anger", "fear", "disgust", "surprise"]:
         if emotion in emotion_dict and emotion_dict[emotion] is not None:
             lines.append(f"'{emotion}': {emotion_dict[emotion]}")
 
-    if 'dominant_emotion' in emotion_dict:
+    if "dominant_emotion" in emotion_dict:
         lines.append(f"'dominant_emotion': '{emotion_dict['dominant_emotion']}'")
 
     return "{" + ", ".join(lines) + "}"

@@ -9,17 +9,36 @@ def emotion_detector(text):
     header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
     payload = {"raw_document": {"text": text}}
     response = requests.post(url, headers=header, json=payload, timeout=30)
-    return response.text
+    response_json = json.loads(response.text)
+    emotions = response_json["emotion_pred"]
+    anger = emotions["anger"]
+    disgust = emotions["disgust"]
+    fear = emotions["fear"]
+    joy = emotions["joy"]
+    sadness = emotions["sadness"]
+    surprise = emotions.get("surprise", 0.0)
+    emotion_scores = {"anger": anger, "disgust": disgust, "fear": fear, "joy": joy, "sadness": sadness, "surprise": surprise}
+    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+    return {
+        "anger": anger,
+        "disgust": disgust,
+        "fear": fear,
+        "joy": joy,
+        "sadness": sadness,
+        "surprise": surprise,
+        "dominant_emotion": dominant_emotion,
+        "status_code": 200
+    }
 
 
 def format_result(emotion_dict):
     if emotion_dict is None:
         return "Invalid input!"
     lines = []
-    for emotion in ['joy', 'sadness', 'anger', 'fear', 'disgust', 'surprise']:
+    for emotion in ["joy", "sadness", "anger", "fear", "disgust", "surprise"]:
         if emotion in emotion_dict and emotion_dict[emotion] is not None:
             lines.append(f"'{emotion}': {emotion_dict[emotion]}")
-    if 'dominant_emotion' in emotion_dict:
+    if "dominant_emotion" in emotion_dict:
         lines.append(f"'dominant_emotion': '{emotion_dict['dominant_emotion']}'")
     return "{" + ", ".join(lines) + "}"
 
@@ -27,9 +46,7 @@ def format_result(emotion_dict):
 if __name__ == "__main__":
     test_text = "I am so happy today!"
     result = emotion_detector(test_text)
-    result_dict = json.loads(result)
-    emotions = result_dict['emotion_pred']
-    formatted = format_result(emotions)
+    formatted = format_result(result)
     print("Emotion Detection Result:")
     print(f"Input: {test_text}")
     print(formatted)
