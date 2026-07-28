@@ -1,4 +1,7 @@
-Emotion Detection Result:
-Input: I am so happy today!
-Result: {'joy': 0.854, 'sadness': 0.036, 'anger': 0.015, 'fear': 0.012, 'disgust': 0.008, 'surprise': 0.075}
+Python 3.14.0
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from EmotionDetection.emotion_detection import emotion_detector
+>>> emotion_detector("I am so happy today!")
+{'joy': 0.954161, 'sadness': 0.035762, 'anger': 0.006591, 'fear': 0.002564, 'disgust': 0.000922, 'dominant_emotion': 'joy'}
+>>> 
 Application imported and tested successfully.

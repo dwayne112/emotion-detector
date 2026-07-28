@@ -1,13 +1,9 @@
-============================= test session starts =============================
-collecting ... collected 0 items
+python3 -m pylint EmotionDetection/emotion_detection.py server.py --disable=all --enable=error,warning,convention,refactor,line-length
 
-=============================== ERROR === Collecting Error ======================
-ERROR: file not found: tests/
-
-=============================================================================
+--------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 10.00/10)
-
-Pylint Static Code Analysis Result:
+--------------------------------------------------------------------
+Static Code Analysis Result:
 ====================================
 Global Score: 10.00/10
 

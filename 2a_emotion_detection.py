@@ -2,6 +2,8 @@
 Emotion Detection Module
 Uses IBM Watson NLP library to detect emotions in text
 """
+import requests
+import json
 
 
 def emotion_detector(text):
@@ -14,27 +16,48 @@ def emotion_detector(text):
     Returns:
         dict: A dictionary containing emotion scores for:
               joy, sadness, anger, fear, disgust, surprise
+              and a dominant_emotion key
               or an error message if analysis fails.
     """
     if text is None or text.strip() == "":
         return {
-            'error': 'No text provided',
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None,
             'status_code': 400
         }
 
-    # Simulated emotion response (IBM Watson NLP style)
-    # In production, this calls: natural_language_understanding.analyze(
-    #     text=text, features=EmotionsOptions())
-    emotions = {
-        'joy': 0.854,
-        'sadness': 0.036,
-        'anger': 0.015,
-        'fear': 0.012,
-        'disgust': 0.008,
-        'surprise': 0.075
-    }
+    url = "https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict"
+    header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
+    payload = {"raw_document": {"text": text}}
 
-    return emotions
+    response = requests.post(url, headers=header, json=payload, timeout=30)
+    response_json = json.loads(response.text)
+
+    # Extract emotion scores
+    emotions = response_json['emotion_pred']
+    anger = emotions['anger']
+    disgust = emotions['disgust']
+    fear = emotions['fear']
+    joy = emotions['joy']
+    sadness = emotions['sadness']
+
+    # Find dominant emotion
+    emotion_scores = {'anger': anger, 'disgust': disgust, 'fear': fear,
+                     'joy': joy, 'sadness': sadness}
+    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+
+    return {
+        'anger': anger,
+        'disgust': disgust,
+        'fear': fear,
+        'joy': joy,
+        'sadness': sadness,
+        'dominant_emotion': dominant_emotion
+    }
 
 
 if __name__ == "__main__":

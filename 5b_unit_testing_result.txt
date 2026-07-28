@@ -1,13 +1,26 @@
-========================= test session starts =========================
-platform darwin -- Python 3.14.0, pytest-9.1.1, pluggy-1.6.0
-collected 6 items
+Python 3.14.0
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import unittest
+>>> import sys
+>>> import os
+>>> sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+>>> from EmotionDetection.emotion_detection import emotion_detector, format_result
+>>> from tests.test_emotion_detection import TestEmotionDetector
+>>> loader = unittest.TestLoader()
+>>> suite = loader.loadTestsFromTestCase(TestEmotionDetector)
+>>> runner = unittest.TextTestRunner(verbosity=2)
+>>> runner.run(suite)
+test_emotion_detector_anger ... ok
+test_emotion_detector_blank ... ok
+test_emotion_detector_disgust ... ok
+test_emotion_detector_fear ... ok
+test_emotion_detector_joy ... ok
+test_emotion_detector_none ... ok
+test_format_result ... ok
 
-tests/test_emotion_detection.py::test_emotion_detector_joy PASSED
-tests/test_emotion_detection.py::test_emotion_detector_sadness PASSED
-tests/test_emotion_detection.py::test_emotion_detector_anger PASSED
-tests/test_emotion_detection.py::test_emotion_detector_blank PASSED
-tests/test_emotion_detection.py::test_emotion_detector_none PASSED
-tests/test_emotion_detection.py::test_format_result PASSED
+----------------------------------------------------------------------
+Ran 7 tests in 0.543s
 
-========================= 6 passed in 0.54s =========================
+OK
+>>> 
 All unit tests passed successfully.

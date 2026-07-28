@@ -1,42 +1,26 @@
-"""
-Flask Web Server for Emotion Detection Application
-With error handling for blank input
-"""
 from flask import Flask, request, jsonify
-from EmotionDetection.emotion_detection import emotion_detector
+from EmotionDetection.emotion_detection import emotion_detector, format_result
 
 app = Flask(__name__)
 
 
-@app.route('/emotion-detector', methods=['POST'])
-def emotion_detector_api():
-    """
-    Emotion Detection API endpoint
-    Handles blank input errors with status code 400
-    """
-    data = request.get_json()
-
-    if not data or 'text' not in data:
+@app.route('/emotionDetector', methods=['GET'])
+def emotion_detector_route():
+    text_to_analyze = request.args.get('textToAnalyze')
+    if not text_to_analyze or text_to_analyze.strip() == "":
         return jsonify({
-            'error': 'Invalid JSON format',
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None,
             'status_code': 400
         }), 400
 
-    text = data['text']
-
-    # Handle blank input - returns 400
-    if text is None or str(text).strip() == "":
-        return jsonify({
-            'error': 'No text provided',
-            'status_code': 400
-        }), 400
-
-    result = emotion_detector(text)
-
-    if 'error' in result:
-        return jsonify(result), result.get('status_code', 400)
-
-    return jsonify(result), 200
+    result = emotion_detector(text_to_analyze)
+    formatted = format_result(result)
+    return jsonify({'formatted_response': formatted})
 
 
 if __name__ == '__main__':
