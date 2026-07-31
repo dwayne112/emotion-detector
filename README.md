@@ -1,47 +1,44 @@
 # Emotion Detector
 
-An AI-powered Emotion Detection web application built with Python, Flask, and IBM Watson NLP library.
+Final Project for IBM's "Developing AI Applications with Python and Flask" course.
 
-## Project Overview
+## Description
 
-This project implements an emotion detection tool using IBM Watson Natural Language Processing (NLP) library. The application analyzes text input and identifies the emotion expressed (joy, sadness, anger, fear, disgust, surprise).
+A Python web application using Flask that integrates IBM Watson NLP to detect emotions in text. The application analyzes text input and returns scores for anger, disgust, fear, joy, and sadness, along with the dominant emotion.
 
-## Features
+## Project Structure
 
-- Emotion detection using IBM Watson NLP
-- REST API built with Flask
-- Unit testing with pytest
-- Error handling for invalid inputs
-- Static code analysis with pylint
-
-## Installation
-
-```bash
-pip install ibm-watson-machine-learning flask pytest pylint
+```
+├── EmotionDetection/
+│   ├── __init__.py
+│   └── emotion_detection.py
+├── templates/
+│   └── index.html
+├── static/
+│   └── mywebscript.js
+├── tests/
+│   └── test_emotion_detection.py
+├── server.py
+└── requirements.txt
 ```
 
 ## Usage
 
 ```python
 from EmotionDetection.emotion_detection import emotion_detector
-
-result = emotion_detector("I am so happy today!")
-print(result)
+emotion_detector("I am so happy today!")
+# Returns: {'anger': 0.006, 'disgust': 0.001, 'fear': 0.003, 'joy': 0.954, 'sadness': 0.036, 'dominant_emotion': 'joy'}
 ```
 
-## Project Structure
+Run the Flask server:
+```bash
+python server.py
+```
+Then visit http://localhost:5000
 
-- `EmotionDetection/` - Main package
-  - `__init__.py` - Package initialization
-  - `emotion_detection.py` - Emotion detection module
-- `tests/` - Test suite
-  - `test_emotion_detection.py` - Unit tests
-- `server.py` - Flask web application
+## Technologies
 
-## Author
-
-Dwayne Taylor
-
-## License
-
-MIT
+- Python
+- Flask
+- IBM Watson NLP Emotion Prediction API
+- unittest

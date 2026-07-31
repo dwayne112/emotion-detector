@@ -1,40 +1,52 @@
-from flask import Flask, request, jsonify
-from EmotionDetection.emotion_detection import emotion_detector, format_result
+"""
+This function initiates the application of emotion
+detection to be executed over the Flask channel and deployed on
+localhost:5000.
+"""
 
-app = Flask(__name__)
+from flask import Flask, render_template, request
+from EmotionDetection.emotion_detection import emotion_detector
+
+# Initiate the flask app
+app = Flask("Emotion Detector")
 
 
-@app.route("/emotionDetector", methods=["GET"])
-def emotion_detector_route():
-    text_to_analyze = request.args.get("textToAnalyze")
-    if not text_to_analyze or text_to_analyze.strip() == "":
-        return jsonify({
-            "anger": None,
-            "disgust": None,
-            "fear": None,
-            "joy": None,
-            "sadness": None,
-            "surprise": None,
-            "dominant_emotion": None,
-            "status_code": 400
-        }), 400
+@app.route("/emotionDetector")
+def sent_detector():
+    """
+    This code receives the text from the HTML interface and 
+    runs emotion detection over it using emotion_detector()
+    function. The output returned shows the emotion related
+    to the informed expression.
+    """
 
-    result = emotion_detector(text_to_analyze)
-    if result is None:
-        return jsonify({
-            "anger": None,
-            "disgust": None,
-            "fear": None,
-            "joy": None,
-            "sadness": None,
-            "surprise": None,
-            "dominant_emotion": None,
-            "status_code": 400
-        }), 400
+    text_to_analyze = request.args.get('textToAnalyze')
+    response = emotion_detector(text_to_analyze)
 
-    formatted = format_result(result)
-    return jsonify({"formatted_response": formatted})
+    anger = response['anger']
+    disgust = response['disgust']
+    fear = response['fear']
+    joy = response['joy']
+    sadness = response['sadness']
+    dominant_emotion = response['dominant_emotion']
+
+    if dominant_emotion is None:
+        return "Invalid text! Please try again!"
+
+    return (
+        f"For the given statement, the system response is 'anger':"
+        f"{anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}."
+        f"The dominant emotion is {dominant_emotion}."
+    )
+
+
+@app.route("/")
+def render_index_page():
+    """
+    Starts the server with the defined port for deployment.
+    """
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000)

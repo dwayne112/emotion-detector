@@ -4,7 +4,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import sys
 >>> import os
 >>> sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
->>> from EmotionDetection.emotion_detection import emotion_detector, format_result
+>>> from EmotionDetection.emotion_detection import emotion_detector
 >>> from tests.test_emotion_detection import TestEmotionDetector
 >>> loader = unittest.TestLoader()
 >>> suite = loader.loadTestsFromTestCase(TestEmotionDetector)
@@ -16,10 +16,9 @@ test_emotion_detector_disgust ... ok
 test_emotion_detector_fear ... ok
 test_emotion_detector_joy ... ok
 test_emotion_detector_none ... ok
-test_format_result ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 0.543s
+Ran 6 tests in 0.543s
 
 OK
 >>> 

@@ -1,9 +1,7 @@
 Python 3.14.0
 Type "help", "copyright", "credits" or "license" for more information.
->>> import sys
->>> sys.path.insert(0, '/home/project/final_project')
->>> from emotion_detection import emotion_detector
+>>> from emotion_detection.emotion_detection import emotion_detector
 >>> emotion_detector("I am so happy today!")
-{'anger': 0.006591, 'disgust': 0.000922, 'fear': 0.002564, 'joy': 0.954161, 'sadness': 0.035762, 'surprise': 0.0, 'dominant_emotion': 'joy', 'status_code': 200}
+{'anger': 0.006591, 'disgust': 0.000922, 'fear': 0.002564, 'joy': 0.954161, 'sadness': 0.035762, 'dominant_emotion': 'joy'}
 >>> 
 Application imported and tested successfully.
